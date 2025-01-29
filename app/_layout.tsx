@@ -4,8 +4,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
+import Logo from "../assets/images/logo.svg";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,6 +30,9 @@ export default function RootLayout() {
       <View
         style={[styles.background, { backgroundColor: Colors["primary-blue"] }]}
       >
+        <View style={styles.logo}>
+          <Logo width={"75%"} style={[{ alignSelf: "center" }]} />
+        </View>
         <View
           style={[styles.card, { backgroundColor: Colors["background-color"] }]}
         >
@@ -53,5 +57,9 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 50,
     borderTopStartRadius: 50,
     padding: 20,
+  },
+  logo: {
+    flex: 1,
+    justifyContent: "center",
   },
 });
