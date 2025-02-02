@@ -1,9 +1,16 @@
-import { Text } from "react-native";
+import { Link } from "expo-router";
+import { Pressable, Text, View } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <>
-      <Text></Text>
-    </>
+    <View>
+      <Text>
+        <Link href={"/sign-up"} asChild>
+          <Pressable>
+            <Text>Go sign-up</Text>
+          </Pressable>
+        </Link>
+      </Text>
+    </View>
   );
 }
