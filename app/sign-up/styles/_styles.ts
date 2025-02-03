@@ -25,4 +25,19 @@ export const styles = StyleSheet.create({
   inputIcon: {
     marginRight: 8,
   },
+  button: {
+    borderRadius: 5,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  containerLogin: {
+    alignSelf: "flex-start",
+    marginHorizontal: "auto",
+    marginTop: 15,
+  },
+  textLogin: {
+    fontSize: 15,
+    color: Colors["text-color-black"],
+  },
 });

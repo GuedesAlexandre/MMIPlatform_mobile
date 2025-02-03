@@ -4,6 +4,7 @@ import { styles } from "./styles/_styles";
 import { Colors } from "@/constants/Colors";
 import InputUI from "@/app/sign-up/components/inputUI";
 import { useSignUp } from "@/app/store/signup.store";
+import NavigateButton from "@/app/sign-up/components/navigationButton";
 
 const SignUpScreen = () => {
   const { firstName, lastName, birthDate, numEtu, resetAllInputs } =
@@ -52,15 +53,17 @@ const SignUpScreen = () => {
           infoType="numEtu"
         />
       </View>
-      <Link href={"/"}>
-        <Text>Suivant</Text>
-      </Link>
-      <Pressable onPress={handlePress}>
-        <Text>
-          <Text>Déjà un compte ? </Text>
-          <Text>Connectez-vous</Text>
-        </Text>
-      </Pressable>
+      <NavigateButton label="Suivant" bgColor={Colors["primary-blue"]} />
+      <View>
+        <Pressable onPress={handlePress} style={styles.containerLogin}>
+          <Text style={styles.textLogin}>
+            <Text>Déjà un compte ? </Text>
+            <Text style={{ textDecorationLine: "underline" }}>
+              Connectez-vous
+            </Text>
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
