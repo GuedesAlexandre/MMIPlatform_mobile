@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     borderColor: Colors["primary-blue"],
     borderRadius: 5,
     paddingHorizontal: 10,
-    height: 40,
+    height: 45,
     marginTop: 20,
   },
   inputIcon: {
@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
   button: {
     borderRadius: 5,
     width: "100%",
+    paddingVertical: 2.5,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -40,4 +41,9 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     color: Colors["text-color-black"],
   },
+  navigationBallsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 20,
+  }
 });
