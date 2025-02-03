@@ -1,12 +1,21 @@
-import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { Link, useRouter } from "expo-router";
+import { Pressable, Text, View } from "react-native";
 import { styles } from "./styles/_styles";
 import { Colors } from "@/constants/Colors";
 import InputUI from "@/app/sign-up/components/inputUI";
 import { useSignUp } from "@/app/store/signup.store";
 
 const SignUpScreen = () => {
-  const { firstName, lastName, birthDate, numEtu } = useSignUp();
+  const { firstName, lastName, birthDate, numEtu, resetAllInputs } =
+    useSignUp();
+
+  const router = useRouter();
+
+  const handlePress = () => {
+    resetAllInputs();
+    router.push("/");
+  };
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <View style={styles.titleBox}>
@@ -46,10 +55,12 @@ const SignUpScreen = () => {
       <Link href={"/"}>
         <Text>Suivant</Text>
       </Link>
-      <Link href={"/"}>
-        <Text>Déjà un compte ? </Text>
-        <Text>Connectez-vous</Text>
-      </Link>
+      <Pressable onPress={handlePress}>
+        <Text>
+          <Text>Déjà un compte ? </Text>
+          <Text>Connectez-vous</Text>
+        </Text>
+      </Pressable>
     </View>
   );
 };

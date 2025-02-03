@@ -7,4 +7,5 @@ export interface signUpStore {
   setLastName: (lastName: string) => void;
   setBirthDate: (birthDate: string) => void;
   setNumEtu: (numEtu: string) => void;
+  resetAllInputs: () => void;
 }
