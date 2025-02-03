@@ -41,12 +41,6 @@ const SignUpScreen = () => {
           infoType="lastName"
         />
         <InputUI
-          placeholder="Date de naissance"
-          icon="calendar"
-          value={birthDate}
-          infoType="birthDate"
-        />
-        <InputUI
           placeholder="Numéro étudiant"
           icon="idcard"
           value={numEtu}

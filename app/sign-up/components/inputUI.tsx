@@ -1,8 +1,8 @@
-import { Keyboard, TextInput, View } from "react-native";
+import { View, TextInput } from "react-native";
 import { styles } from "@/app/sign-up/styles/_styles";
 import { Colors } from "@/constants/Colors";
 import { InputUiInterface } from "@/app/sign-up/models/inputs.model";
-import { UserRound, Calendar, IdCard } from "lucide-react-native";
+import { UserRound, IdCard } from "lucide-react-native";
 import { useSignUp } from "@/app/store/signup.store";
 
 const InputUI = ({ placeholder, icon, value, infoType }: InputUiInterface) => {
@@ -15,9 +15,6 @@ const InputUI = ({ placeholder, icon, value, infoType }: InputUiInterface) => {
         break;
       case "lastName":
         setLastName(text);
-        break;
-      case "birthDate":
-        setBirthDate(text);
         break;
       case "numEtu":
         setNumEtu(text);
@@ -36,13 +33,6 @@ const InputUI = ({ placeholder, icon, value, infoType }: InputUiInterface) => {
           strokeWidth={1}
           style={styles.inputIcon}
         />
-      ) : icon === "calendar" ? (
-        <Calendar
-          color={Colors["text-color-black"]}
-          strokeWidth={1}
-          size={18}
-          style={styles.inputIcon}
-        />
       ) : (
         <IdCard
           color={Colors["text-color-black"]}
@@ -51,7 +41,6 @@ const InputUI = ({ placeholder, icon, value, infoType }: InputUiInterface) => {
           style={styles.inputIcon}
         />
       )}
-
       <TextInput
         placeholder={placeholder}
         value={value}
