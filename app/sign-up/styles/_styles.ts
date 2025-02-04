@@ -45,5 +45,19 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 20,
-  }
+  },
+  iconSignUpCallback: {
+    marginHorizontal: "auto",
+    marginTop: 50,
+  },
+  titleSignUpCallback: {
+    fontSize: 32,
+    fontWeight: "bold",
+  },
+  textSignUpCallback: {
+    textAlign: "center",
+    fontSize: 17,
+    color: Colors["primary-blue"],
+    marginTop: 20,
+  },
 });

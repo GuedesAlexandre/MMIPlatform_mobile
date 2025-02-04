@@ -6,13 +6,19 @@ export const useSignUp = create<signUpStore>((set) => ({
   lastName: "",
   birthDate: "",
   numEtu: "",
+  mail: "",
+  password: "",
   setFirstName: (firstName) => set({ firstName }),
   setLastName: (lastName) => set({ lastName }),
   setNumEtu: (numEtu) => set({ numEtu }),
+  setMail: (mail) => set({ mail }),
+  setPassword: (password) => set({ password }),
   resetAllInputs: () =>
     set({
       firstName: "",
       lastName: "",
       numEtu: "",
+      mail: "",
+      password: "",
     }),
 }));

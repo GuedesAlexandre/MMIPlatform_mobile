@@ -3,4 +3,5 @@ export interface InputUiInterface {
   icon: string;
   value: string;
   infoType: string;
+  isPassword: boolean;
 }

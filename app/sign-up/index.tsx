@@ -4,12 +4,11 @@ import { styles } from "./styles/_styles";
 import { Colors } from "@/constants/Colors";
 import InputUI from "@/app/sign-up/components/inputUI";
 import { useSignUp } from "@/app/store/signup.store";
-import NavigateButton from "@/app/sign-up/components/navigationButton";
+import NavigateButton from "@/app/components/navigationButton";
 import NavigationBall from "./components/navigationBall";
 
 const SignUpScreen = () => {
-  const { firstName, lastName, numEtu, resetAllInputs } =
-    useSignUp();
+  const { firstName, lastName, numEtu, resetAllInputs } = useSignUp();
 
   const router = useRouter();
 
@@ -19,7 +18,7 @@ const SignUpScreen = () => {
     );
 
     if (areFieldsValid) {
-      router.push("/sign-up");
+      router.push("/sign-up/step2");
     }
   };
 
@@ -58,22 +57,26 @@ const SignUpScreen = () => {
           icon="user"
           value={firstName}
           infoType="firstName"
+          isPassword={false}
         />
         <InputUI
           placeholder="Entrer votre nom"
           icon="user"
           value={lastName}
           infoType="lastName"
+          isPassword={false}
         />
         <InputUI
           placeholder="Numéro étudiant"
           icon="idcard"
           value={numEtu}
           infoType="numEtu"
+          isPassword={false}
         />
       </View>
       <View>
         <NavigateButton
+          marginTop={30}
           label="Suivant"
           bgColor={Colors["primary-blue"]}
           onPressFunction={handleNextForm}
