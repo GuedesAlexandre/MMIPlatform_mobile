@@ -6,7 +6,7 @@ import { UserRound, IdCard } from "lucide-react-native";
 import { useSignUp } from "@/app/store/signup.store";
 
 const InputUI = ({ placeholder, icon, value, infoType }: InputUiInterface) => {
-  const { setFirstName, setLastName, setBirthDate, setNumEtu } = useSignUp();
+  const { setFirstName, setLastName, setNumEtu } = useSignUp();
 
   const handleChange = (text: string) => {
     switch (infoType) {

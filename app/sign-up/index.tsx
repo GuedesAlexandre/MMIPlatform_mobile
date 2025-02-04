@@ -8,7 +8,7 @@ import NavigateButton from "@/app/sign-up/components/navigationButton";
 import NavigationBall from "./components/navigationBall";
 
 const SignUpScreen = () => {
-  const { firstName, lastName, birthDate, numEtu, resetAllInputs } =
+  const { firstName, lastName, numEtu, resetAllInputs } =
     useSignUp();
 
   const router = useRouter();
@@ -19,7 +19,7 @@ const SignUpScreen = () => {
     );
 
     if (areFieldsValid) {
-      router.push("/");
+      router.push("/sign-up");
     }
   };
 

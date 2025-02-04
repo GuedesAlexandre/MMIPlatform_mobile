@@ -8,13 +8,11 @@ export const useSignUp = create<signUpStore>((set) => ({
   numEtu: "",
   setFirstName: (firstName) => set({ firstName }),
   setLastName: (lastName) => set({ lastName }),
-  setBirthDate: (birthDate) => set({ birthDate }),
   setNumEtu: (numEtu) => set({ numEtu }),
   resetAllInputs: () =>
     set({
       firstName: "",
       lastName: "",
-      birthDate: "",
       numEtu: "",
     }),
 }));
