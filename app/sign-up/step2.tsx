@@ -1,13 +1,13 @@
 import { Pressable, Text, View } from "react-native";
-import NavigationBall from "./components/navigationBall";
-import { styles } from "./styles/_styles";
+import NavigationBall from "@/app/sign-up/components/navigationBall";
+import { styles } from "@/app/sign-up/styles/_styles";
 import { Colors } from "@/constants/Colors";
-import InputUI from "./components/inputUI";
-import { useSignUp } from "../store/signup.store";
+import InputUI from "@/app/sign-up/components/inputUI";
+import { useSignUp } from "@/app/store/signup.store";
 import { useRouter } from "expo-router";
 import { MoveLeft } from "lucide-react-native";
-import NavigateButton from "../components/navigationButton";
-import { createUserAccout } from "./service/createUserAccount";
+import NavigateButton from "@/app/components/navigationButton";
+import { createUserAccout } from "@/app/sign-up/service/createUserAccount";
 
 const SignUpScreen2 = () => {
   const { mail, password, firstName, lastName, numEtu, resetAllInputs } =

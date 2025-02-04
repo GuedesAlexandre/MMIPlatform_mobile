@@ -1,11 +1,11 @@
 import { useRouter } from "expo-router";
 import { Pressable, Text, View } from "react-native";
-import { styles } from "./styles/_styles";
+import { styles } from "@/app/sign-up/styles/_styles";
 import { Colors } from "@/constants/Colors";
 import InputUI from "@/app/sign-up/components/inputUI";
 import { useSignUp } from "@/app/store/signup.store";
 import NavigateButton from "@/app/components/navigationButton";
-import NavigationBall from "./components/navigationBall";
+import NavigationBall from "@/app/sign-up/components/navigationBall";
 
 const SignUpScreen = () => {
   const { firstName, lastName, numEtu, resetAllInputs } = useSignUp();

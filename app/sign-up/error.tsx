@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
 import { CircleX } from "lucide-react-native";
 import { Colors } from "@/constants/Colors";
-import { styles } from "./styles/_styles";
-import NavigateButton from "../components/navigationButton";
+import { styles } from "@/app/sign-up/styles/_styles";
+import NavigateButton from "@/app/components/navigationButton";
 import { useRouter } from "expo-router";
 
 const ErrorScreen = () => {
