@@ -1,6 +1,6 @@
 import { Button } from "react-native-magnus";
 import { styles } from "@/app/sign-up/styles/_styles";
-import { ButtonUI } from "@/app/sign-up/models/navigationButton.model";
+import { ButtonUI } from "@/app/sign-up/models/ui/navigationButton.model";
 
 const NavigateButton = ({ label, bgColor, onPressFunction, marginTop }: ButtonUI) => {
   return (

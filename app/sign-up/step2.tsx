@@ -1,21 +1,39 @@
-import { Pressable, Text, View } from "react-native";
-import NavigationBall from "@/app/sign-up/components/navigationBall";
+import { View, Text, Pressable } from "react-native";
+import NavigationBall from "@/app/sign-up/components/ui/navigationBall";
 import { styles } from "@/app/sign-up/styles/_styles";
 import { Colors } from "@/constants/Colors";
 import InputUI from "@/app/sign-up/components/inputUI";
 import { useSignUp } from "@/app/store/signup.store";
 import { useRouter } from "expo-router";
 import { MoveLeft } from "lucide-react-native";
-import NavigateButton from "@/app/components/navigationButton";
+import NavigateButton from "@/app/components/ui/navigationButton";
 import { createUserAccout } from "@/app/sign-up/service/createUserAccount";
-import { checkMail, checkPassword } from "@/app/sign-up/service/checkString";
+import {
+  checkMail,
+  checkPassword,
+  checkConfirmPassword,
+} from "@/app/sign-up/service/checkString";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const SignUpScreen2 = () => {
-  const { mail, password, firstName, lastName, numEtu, resetAllInputs } =
-    useSignUp();
+  const {
+    mail,
+    password,
+    confirmPassword,
+    firstName,
+    lastName,
+    numEtu,
+    setPassword,
+    setMail,
+    setConfirmPassword,
+    resetAllInputs,
+  } = useSignUp();
   const router = useRouter();
 
   const handleReturnBack = () => {
+    setMail("");
+    setPassword("");
+    setConfirmPassword("");
     router.push("/sign-up");
   };
 
@@ -28,9 +46,16 @@ const SignUpScreen2 = () => {
     const areFieldsValid = [mail, password].every(
       (field) => field.trim() !== ""
     );
-    const isPasswordValid = checkPassword(password) === "" ? true : false;
-    const isMailValid = checkMail(mail) === "" ? true : false;
-    if (areFieldsValid && isMailValid && isPasswordValid) {
+    const isPasswordValid = checkPassword(password) === null ? true : false;
+    const isMailValid = checkMail(mail) === null ? true : false;
+    const isConfirmPasswordValid =
+      checkConfirmPassword(password, confirmPassword) === null;
+    if (
+      areFieldsValid &&
+      isMailValid &&
+      isPasswordValid &&
+      isConfirmPasswordValid
+    ) {
       try {
         await createUserAccout(
           firstName.trimEnd(),
@@ -49,7 +74,12 @@ const SignUpScreen2 = () => {
   };
 
   return (
-    <View style={{ paddingHorizontal: 10 }}>
+    <KeyboardAwareScrollView
+      contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 10 }}
+      enableOnAndroid={true}
+      extraScrollHeight={50}
+      keyboardShouldPersistTaps="handled"
+    >
       <View>
         <MoveLeft
           strokeWidth={2}
@@ -60,7 +90,7 @@ const SignUpScreen2 = () => {
       </View>
       <View style={styles.titleBox}>
         <Text style={[styles.title, { color: Colors["primary-blue"] }]}>
-          Créer votre compte{" "}
+          Créer votre compte
         </Text>
         <Text style={[styles.title, { color: Colors["highlight-yellow"] }]}>
           pour utiliser l'application
@@ -86,13 +116,19 @@ const SignUpScreen2 = () => {
           icon="letter"
           value={mail}
           infoType="mail"
-          isPassword={false}
         />
         <InputUI
           placeholder="Mot de passe"
           icon="lock"
           value={password}
           infoType="password"
+          isPassword={true}
+        />
+        <InputUI
+          placeholder="Confirmer votre mot de passe"
+          icon="lock"
+          value={confirmPassword}
+          infoType="confirmPassword"
           isPassword={true}
         />
       </View>
@@ -114,7 +150,7 @@ const SignUpScreen2 = () => {
           </Text>
         </Pressable>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 

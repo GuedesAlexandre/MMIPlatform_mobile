@@ -4,8 +4,9 @@ import { styles } from "@/app/sign-up/styles/_styles";
 import { Colors } from "@/constants/Colors";
 import InputUI from "@/app/sign-up/components/inputUI";
 import { useSignUp } from "@/app/store/signup.store";
-import NavigateButton from "@/app/components/navigationButton";
-import NavigationBall from "@/app/sign-up/components/navigationBall";
+import NavigateButton from "@/app/components/ui/navigationButton";
+import NavigationBall from "@/app/sign-up/components/ui/navigationBall";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const SignUpScreen = () => {
   const { firstName, lastName, numEtu, resetAllInputs } = useSignUp();
@@ -28,10 +29,15 @@ const SignUpScreen = () => {
   };
 
   return (
-    <View style={{ paddingHorizontal: 10 }}>
+    <KeyboardAwareScrollView
+      contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 10 }}
+      enableOnAndroid={true}
+      extraScrollHeight={50}
+      keyboardShouldPersistTaps="handled"
+    >
       <View style={styles.titleBox}>
         <Text style={[styles.title, { color: Colors["primary-blue"] }]}>
-          Créer votre compte{" "}
+          Créer votre compte
         </Text>
         <Text style={[styles.title, { color: Colors["highlight-yellow"] }]}>
           pour utiliser l'application
@@ -57,21 +63,18 @@ const SignUpScreen = () => {
           icon="user"
           value={firstName}
           infoType="firstName"
-          isPassword={false}
         />
         <InputUI
           placeholder="Entrer votre nom"
           icon="user"
           value={lastName}
           infoType="lastName"
-          isPassword={false}
         />
         <InputUI
           placeholder="Numéro étudiant"
           icon="idcard"
           value={numEtu}
           infoType="numEtu"
-          isPassword={false}
         />
       </View>
       <View>
@@ -92,7 +95,7 @@ const SignUpScreen = () => {
           </Text>
         </Pressable>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 

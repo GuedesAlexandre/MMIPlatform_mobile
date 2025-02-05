@@ -1,18 +1,20 @@
 import { create } from "zustand";
-import { signUpStore } from "@/app/models/signUp.model";
+import { SignUpStore } from "@/app/models/signUp.model";
 
-export const useSignUp = create<signUpStore>((set) => ({
+export const useSignUp = create<SignUpStore>((set) => ({
   firstName: "",
   lastName: "",
   birthDate: "",
   numEtu: "",
   mail: "",
   password: "",
+  confirmPassword: "",
   setFirstName: (firstName) => set({ firstName }),
   setLastName: (lastName) => set({ lastName }),
   setNumEtu: (numEtu) => set({ numEtu }),
   setMail: (mail) => set({ mail }),
   setPassword: (password) => set({ password }),
+  setConfirmPassword: (confirmPassword) => set({ confirmPassword }),
   resetAllInputs: () =>
     set({
       firstName: "",
@@ -20,5 +22,6 @@ export const useSignUp = create<signUpStore>((set) => ({
       numEtu: "",
       mail: "",
       password: "",
+      confirmPassword: "",
     }),
 }));

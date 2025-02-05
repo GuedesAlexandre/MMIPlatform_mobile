@@ -8,21 +8,14 @@ export const createUserAccout = async (
   password: string
 ) => {
   try {
-    const response = await axios.post(
-      `${process.env.EXPO_PUBLIC_API_URL}/auth/student`,
-      {
-        numEtu: numEtu,
-        email: mail,
-        password: password,
-        lastName: lastName,
-        firstName: firstName,
-      }
-    );
-
-    if (!response) {
-      throw new Error("Could not create user account");
-    }
+    const response = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/auth/student`, {
+      numEtu: numEtu,
+      email: mail,
+      password: password,
+      lastName: lastName,
+      firstName: firstName,
+    });
   } catch (error) {
-    throw error;
+    throw new Error("Erreur lors de la création du compte.");
   }
 };

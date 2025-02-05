@@ -1,36 +1,65 @@
-import { View, TextInput, Text } from "react-native";
+import { View, TextInput, Text, Pressable } from "react-native";
 import { styles } from "@/app/sign-up/styles/_styles";
 import { Colors } from "@/constants/Colors";
-import { InputUiInterface } from "@/app/sign-up/models/inputs.model";
-import { UserRound, IdCard, Lock, Mail } from "lucide-react-native";
+import { InputUiInterface } from "@/app/sign-up/models/ui/inputs.model";
+import {
+  UserRound,
+  IdCard,
+  Lock,
+  Mail,
+  Eye,
+  EyeOff,
+} from "lucide-react-native";
 import { useSignUp } from "@/app/store/signup.store";
 import { useState } from "react";
-import { checkPassword, checkMail } from "@/app/sign-up/service/checkString";
+import {
+  checkPassword,
+  checkMail,
+  checkConfirmPassword,
+} from "@/app/sign-up/service/checkString";
 
 const InputUI = ({
   placeholder,
   icon,
   value,
   infoType,
-  isPassword,
+  isPassword = false,
 }: InputUiInterface) => {
-  const { setFirstName, setLastName, setNumEtu, setMail, setPassword } =
-    useSignUp();
-  const [errorMessageMail, setErrorMessageMail] = useState<string>("");
-  const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
+  const {
+    setFirstName,
+    setLastName,
+    setNumEtu,
+    setMail,
+    setPassword,
+    setConfirmPassword,
+    password,
+  } = useSignUp();
+  const [errorMessageMail, setErrorMessageMail] = useState<string | null>(null);
+  const [errorMessagePassword, setErrorMessagePassword] = useState<
+    string | null
+  >(null);
+  const [errorMessageConfirmPassword, setErrorMessageConfirmPassword] =
+    useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleCheckString = (text: string) => {
     if (infoType === "mail") {
       setErrorMessageMail(checkMail(text));
     } else if (infoType === "password") {
       setErrorMessagePassword(checkPassword(text));
+    } else if (infoType === "confirmPassword") {
+      setErrorMessageConfirmPassword(checkConfirmPassword(password, text));
     }
   };
 
   const handleChange = (text: string) => {
     let cleanedText = text;
 
-    if (["firstName", "lastName", "mail", "password"].includes(infoType)) {
+    if (
+      ["firstName", "lastName", "mail", "password", "confirmPassword"].includes(
+        infoType
+      )
+    ) {
       cleanedText = text.trimStart();
     }
 
@@ -54,6 +83,8 @@ const InputUI = ({
       case "password":
         setPassword(cleanedText);
         break;
+      case "confirmPassword":
+        setConfirmPassword(cleanedText);
       default:
         break;
     }
@@ -96,28 +127,50 @@ const InputUI = ({
           value={value}
           placeholderTextColor={Colors["text-color-black"]}
           keyboardType={
-            infoType === "firstName" ||
-            infoType === "lastName" ||
-            infoType === "password"
-              ? "default"
-              : infoType === "mail"
+            infoType === "mail"
               ? "email-address"
-              : "number-pad"
+              : infoType === "numEtu"
+              ? "number-pad"
+              : "default"
           }
+          autoComplete={infoType === "mail" ? "email" : undefined}
           maxLength={infoType === "numEtu" ? 6 : undefined}
           returnKeyType="done"
           style={styles.input}
           onChangeText={handleChange}
           onBlur={(e) => handleCheckString(e.nativeEvent.text)}
-          secureTextEntry={isPassword}
+          secureTextEntry={isPassword && !showPassword}
         />
+        {isPassword && (
+          <Pressable onPress={() => setShowPassword(!showPassword)}>
+            {showPassword ? (
+              <EyeOff
+                color={Colors["text-color-black"]}
+                size={18}
+                strokeWidth={1}
+              />
+            ) : (
+              <Eye
+                color={Colors["text-color-black"]}
+                size={18}
+                strokeWidth={1}
+              />
+            )}
+          </Pressable>
+        )}
       </View>
       {infoType === "mail"
-        ? errorMessageMail !== "" && (
+        ? errorMessageMail !== null && (
             <Text style={styles.errorInputMessage}>{errorMessageMail}</Text>
           )
-        : errorMessagePassword !== "" && (
+        : infoType === "password"
+        ? errorMessagePassword !== null && (
             <Text style={styles.errorInputMessage}>{errorMessagePassword}</Text>
+          )
+        : errorMessageConfirmPassword !== null && (
+            <Text style={styles.errorInputMessage}>
+              {errorMessageConfirmPassword}
+            </Text>
           )}
     </View>
   );

@@ -2,7 +2,7 @@ import { Colors } from "@/constants/Colors";
 import { CircleCheck } from "lucide-react-native";
 import { Text, View } from "react-native";
 import { styles } from "@/app/sign-up/styles/_styles";
-import NavigateButton from "@/app/components/navigationButton";
+import NavigateButton from "@/app/components/ui/navigationButton";
 import { useRouter } from "expo-router";
 
 const SuccessScreen = () => {
