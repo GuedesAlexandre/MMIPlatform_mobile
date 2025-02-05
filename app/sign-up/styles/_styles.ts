@@ -17,9 +17,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: Colors["primary-blue"],
-    borderRadius: 5,
+    borderRadius: 7,
     paddingHorizontal: 10,
-    height: 45,
+    height: 50,
     marginTop: 20,
   },
   inputIcon: {
@@ -60,4 +60,9 @@ export const styles = StyleSheet.create({
     color: Colors["primary-blue"],
     marginTop: 20,
   },
+  errorInputMessage : {
+    color: Colors["danger"],
+    marginTop: 5,
+    fontSize: 14,
+  }
 });
