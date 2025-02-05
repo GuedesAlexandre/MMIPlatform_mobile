@@ -2,22 +2,40 @@ import { useRouter } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 import { styles } from "@/app/sign-up/styles/_styles";
 import { Colors } from "@/constants/Colors";
-import InputUI from "@/app/sign-up/components/inputUI";
+import InputUI from "@/app/components/ui/inputUI";
 import { useSignUp } from "@/app/store/signup.store";
 import NavigateButton from "@/app/components/ui/navigationButton";
 import NavigationBall from "@/app/sign-up/components/ui/navigationBall";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { UserRound, IdCard } from "lucide-react-native";
+import { KeyboardType } from "@/app/models/inputUI.model";
 
 const SignUpScreen = () => {
-  const { firstName, lastName, numEtu, resetAllInputs } = useSignUp();
-
+  const {
+    firstName,
+    lastName,
+    numEtu,
+    setFirstName,
+    setLastName,
+    setNumEtu,
+    resetAllInputs,
+  } = useSignUp();
   const router = useRouter();
+
+  const handleFirstNameChange = (text: string) => {
+    let cleanedText = text.charAt(0).toUpperCase() + text.slice(1);
+    setFirstName(cleanedText);
+  };
+
+  const handleLastNameChange = (text: string) => {
+    let cleanedText = text.charAt(0).toUpperCase() + text.slice(1);
+    setLastName(cleanedText);
+  };
 
   const handleNextForm = () => {
     const areFieldsValid = [firstName, lastName, numEtu].every(
       (field) => field.trim() !== ""
     );
-
     if (areFieldsValid) {
       router.push("/sign-up/step2");
     }
@@ -60,21 +78,23 @@ const SignUpScreen = () => {
       <View>
         <InputUI
           placeholder="Entrer votre prénom"
-          icon="user"
           value={firstName}
-          infoType="firstName"
+          onChangeText={handleFirstNameChange}
+          Icon={UserRound}
         />
         <InputUI
           placeholder="Entrer votre nom"
-          icon="user"
           value={lastName}
-          infoType="lastName"
+          onChangeText={handleLastNameChange}
+          Icon={UserRound}
         />
         <InputUI
-          placeholder="Numéro étudiant"
-          icon="idcard"
+          placeholder="Numéro d'étudiant"
           value={numEtu}
-          infoType="numEtu"
+          onChangeText={setNumEtu}
+          Icon={IdCard}
+          keyboardType={KeyboardType.NumberPad}
+          maxLength={6}
         />
       </View>
       <View>

@@ -9,22 +9,6 @@ export const styles = StyleSheet.create({
   titleBox: {
     paddingTop: 15,
   },
-  input: {
-    flex: 1,
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: Colors["primary-blue"],
-    borderRadius: 7,
-    paddingHorizontal: 10,
-    height: 50,
-    marginTop: 20,
-  },
-  inputIcon: {
-    marginRight: 8,
-  },
   button: {
     borderRadius: 5,
     width: "100%",
@@ -59,10 +43,5 @@ export const styles = StyleSheet.create({
     fontSize: 17,
     color: Colors["primary-blue"],
     marginTop: 20,
-  },
-  errorInputMessage : {
-    color: Colors["danger"],
-    marginTop: 5,
-    fontSize: 14,
   }
 });

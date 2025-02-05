@@ -2,10 +2,10 @@ import { View, Text, Pressable } from "react-native";
 import NavigationBall from "@/app/sign-up/components/ui/navigationBall";
 import { styles } from "@/app/sign-up/styles/_styles";
 import { Colors } from "@/constants/Colors";
-import InputUI from "@/app/sign-up/components/inputUI";
+import InputUI from "@/app/components/ui/inputUI";
 import { useSignUp } from "@/app/store/signup.store";
 import { useRouter } from "expo-router";
-import { MoveLeft } from "lucide-react-native";
+import { MoveLeft, Lock, Mail } from "lucide-react-native";
 import NavigateButton from "@/app/components/ui/navigationButton";
 import { createUserAccout } from "@/app/sign-up/service/createUserAccount";
 import {
@@ -14,6 +14,7 @@ import {
   checkConfirmPassword,
 } from "@/app/sign-up/service/checkString";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { KeyboardType } from "@/app/models/inputUI.model";
 
 const SignUpScreen2 = () => {
   const {
@@ -40,6 +41,10 @@ const SignUpScreen2 = () => {
   const handlePressReset = () => {
     resetAllInputs();
     router.push("/");
+  };
+
+  const handleChangeMail = (text: string) => {
+    setMail(text.toLowerCase());
   };
 
   const handleConfirm = async () => {
@@ -113,23 +118,28 @@ const SignUpScreen2 = () => {
       <View>
         <InputUI
           placeholder="Entrer votre adress mail"
-          icon="letter"
+          Icon={Mail}
           value={mail}
-          infoType="mail"
+          onChangeText={handleChangeMail}
+          keyboardType={KeyboardType.EmailAddress}
+          onValidate={checkMail}
         />
         <InputUI
           placeholder="Mot de passe"
-          icon="lock"
+          Icon={Lock}
           value={password}
-          infoType="password"
+          onChangeText={setPassword}
           isPassword={true}
+          onValidate={checkPassword}
         />
         <InputUI
           placeholder="Confirmer votre mot de passe"
-          icon="lock"
+          Icon={Lock}
           value={confirmPassword}
-          infoType="confirmPassword"
+          onChangeText={setConfirmPassword}
           isPassword={true}
+          onValidate={checkConfirmPassword}
+          referenceValue={password}
         />
       </View>
       <View>

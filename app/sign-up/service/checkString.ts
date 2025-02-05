@@ -14,9 +14,10 @@ export const checkPassword = (text: string): string | null => {
 };
 
 export const checkConfirmPassword = (
-  password: string,
-  confirmPassword: string
+  confirmPassword: string,
+  password: string | undefined
 ): string | null => {
+  if (!password) return "Veuillez entrer un mot de passe d'abord";
   return password === confirmPassword
     ? null
     : "Les mots de passe ne sont pas identiques";
