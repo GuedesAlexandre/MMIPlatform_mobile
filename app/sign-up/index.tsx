@@ -37,7 +37,7 @@ const SignUpScreen = () => {
       (field) => field.trim() !== ""
     );
     if (areFieldsValid) {
-      router.push("/sign-up/step2");
+      router.push("/sign-up/signupStep2");
     }
   };
 
