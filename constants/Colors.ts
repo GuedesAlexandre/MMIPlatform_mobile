@@ -12,4 +12,5 @@ export const Colors = {
   "placeholder-color": "#939393",
   success: "#00936E",
   "success-hover": "#006d51",
+  "highlight-yellow": "#FBBA00",
 };

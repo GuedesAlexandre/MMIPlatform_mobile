@@ -1,15 +1,15 @@
 import { Link, Stack } from "expo-router";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function NotFoundScreen() {
   return (
-    <>
+    <View>
       <Stack.Screen options={{ title: "Oops!" }} />
 
       <Link href="/" style={styles.link}>
         <Text>Go back home</Text>
       </Link>
-    </>
+    </View>
   );
 }
 
