@@ -7,7 +7,7 @@ import { useSignUp } from "@/app/store/signup.store";
 import { useRouter } from "expo-router";
 import { MoveLeft, Lock, Mail } from "lucide-react-native";
 import NavigateButton from "@/app/components/ui/navigationButton";
-import { createUserAccout } from "@/app/sign-up/service/createUserAccount";
+// import { createUserAccout } from "@/app/sign-up/service/createUserAccount";
 import {
   checkMail,
   checkPassword,
@@ -28,6 +28,7 @@ const SignUpScreen2 = () => {
     setMail,
     setConfirmPassword,
     resetAllInputs,
+    createUserStudent,
   } = useSignUp();
   const router = useRouter();
 
@@ -62,7 +63,7 @@ const SignUpScreen2 = () => {
       isConfirmPasswordValid
     ) {
       try {
-        await createUserAccout(
+        await createUserStudent(
           firstName.trimEnd(),
           lastName.trimEnd(),
           numEtu,
@@ -73,6 +74,7 @@ const SignUpScreen2 = () => {
         router.push("/sign-up/success");
       } catch (err) {
         resetAllInputs();
+        console.error(err);
         router.push("/sign-up/error");
       }
     }

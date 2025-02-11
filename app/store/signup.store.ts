@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { SignUpStore } from "@/app/models/signUp.model";
+import axios from "axios";
 
 export const useSignUp = create<SignUpStore>((set) => ({
   firstName: "",
@@ -24,4 +25,22 @@ export const useSignUp = create<SignUpStore>((set) => ({
       password: "",
       confirmPassword: "",
     }),
+  createUserStudent: async (
+    firstName: string,
+    lastName: string,
+    numEtu: string,
+    mail: string,
+    password: string
+  ) => {
+    await axios.post(
+      `${process.env.EXPO_PUBLIC_API_URL}/auth/student`,
+      {
+        numEtu: numEtu,
+        email: mail,
+        password: password,
+        lastName: lastName,
+        firstName: firstName,
+      }
+    );
+  },
 }));

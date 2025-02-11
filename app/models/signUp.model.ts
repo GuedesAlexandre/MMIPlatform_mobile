@@ -12,4 +12,11 @@ export interface SignUpStore {
   setPassword: (password: string) => void;
   setConfirmPassword: (confirmPassword: string) => void;
   resetAllInputs: () => void;
+  createUserStudent: (
+    firstName: string,
+    lastName: string,
+    numEtu: string,
+    mail: string,
+    password: string
+  ) => Promise<void>;
 }
