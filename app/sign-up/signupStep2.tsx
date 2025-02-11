@@ -7,7 +7,7 @@ import { useSignUp } from "@/app/store/signup.store";
 import { useRouter } from "expo-router";
 import { MoveLeft, Lock, Mail } from "lucide-react-native";
 import NavigateButton from "@/app/components/ui/navigationButton";
-// import { createUserAccout } from "@/app/sign-up/service/createUserAccount";
+
 import {
   checkMail,
   checkPassword,
