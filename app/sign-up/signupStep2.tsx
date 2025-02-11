@@ -74,7 +74,6 @@ const SignUpScreen2 = () => {
         router.push("/sign-up/success");
       } catch (err) {
         resetAllInputs();
-        console.error(err);
         router.push("/sign-up/error");
       }
     }
