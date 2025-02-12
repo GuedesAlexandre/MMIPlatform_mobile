@@ -9,10 +9,15 @@ import { KeyboardType } from "@/app/models/inputUI.model";
 import { UserRound, Lock } from "lucide-react-native";
 import { useState } from "react";
 import NavigateButton from "@/app/components/ui/navigationButton";
+import { checkNull } from "./sign-up/service/checkString";
+import { useAuthStore } from "./store/auth.store";
 
 export default function HomeScreen() {
+  const { fetchAuthToken } = useAuthStore();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
 
   const handlePress = () => {
@@ -20,13 +25,17 @@ export default function HomeScreen() {
   };
 
   const handlePressAuth = () => {
-    if (!handleNullCheck(password) && !handleNullCheck(email)) {
-      router.push("/");
+    if (checkNull(password) && checkNull(email)) {
+      fetchAuthToken(email, password).then((response) => {
+        if (response && "error" in response) {
+          setError(true);
+          setErrorMessage(response.error);
+        } else {
+          setError(false);
+          setErrorMessage(null);
+        }
+      });
     }
-  };
-
-  const handleNullCheck = (text: string) => {
-    return text === null ? "Veuillez indiquez ce champs" : null;
   };
 
   return (
@@ -49,6 +58,7 @@ export default function HomeScreen() {
             vous
           </Text>
         </Text>
+        {error && <Text style={[styles.errorMessage]}>{errorMessage}</Text>}
       </View>
 
       <View style={{ marginVertical: 40 }}>
@@ -58,7 +68,7 @@ export default function HomeScreen() {
           onChangeText={setEmail}
           Icon={UserRound}
           keyboardType={KeyboardType.EmailAddress}
-          onValidate={handleNullCheck}
+          onValidate={checkNull}
         />
         <InputUI
           placeholder="Mot de passe"
@@ -66,7 +76,7 @@ export default function HomeScreen() {
           value={password}
           onChangeText={setPassword}
           isPassword={true}
-          onValidate={handleNullCheck}
+          onValidate={checkNull}
         />
       </View>
       <View>

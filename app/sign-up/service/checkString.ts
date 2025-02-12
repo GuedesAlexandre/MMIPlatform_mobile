@@ -22,3 +22,8 @@ export const checkConfirmPassword = (
     ? null
     : "Les mots de passe ne sont pas identiques";
 };
+
+export const checkNull = (text: string): string | null => {
+  if(!text) return "Champ obligatoire"
+  return null
+}
