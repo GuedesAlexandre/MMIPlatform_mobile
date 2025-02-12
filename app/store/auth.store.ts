@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { create } from "zustand";
+import JWT from "expo-jwt";
 
 interface UserSessionJWT {
   user: UserJWTtoModel;
@@ -30,11 +31,10 @@ interface storeUsers {
 export const useAuthStore = create<storeUsers>((set) => ({
   user: undefined,
   fetchAuthToken: async (email, password) => {
-    const jwt = require("jsonwebtoken");
     try {
       if (!process.env.EXPO_PUBLIC_API_KEY) return;
       const response = await axios.post(
-        `${process.env.EXPO_PUBLIC_API_URL}/student/users/me`,
+        `${process.env.EXPO_PUBLIC_API_URL}/auth/student/users/me`,
         {
           email: email,
           password: password,
@@ -46,11 +46,11 @@ export const useAuthStore = create<storeUsers>((set) => ({
             "Access-Control-Allow-Methods": "*",
           },
         }
-      );
+      )
       const token = response.data;
-      const dataUser = jwt.decode(
+      const dataUser = JWT.decode(
         token,
-        process.env.NEXT_PUBLIC_SECRET_KEY
+        process.env.EXPO_PUBLIC_API_KEY as string,
       ) as UserSessionJWT;
       set({ user: dataUser });
       return dataUser;

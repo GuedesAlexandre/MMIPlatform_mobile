@@ -25,7 +25,7 @@ export default function HomeScreen() {
   };
 
   const handlePressAuth = () => {
-    if (checkNull(password) && checkNull(email)) {
+    if (checkNull(password) === null && checkNull(email) === null) {
       fetchAuthToken(email, password).then((response) => {
         if (response && "error" in response) {
           setError(true);
