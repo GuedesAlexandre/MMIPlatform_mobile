@@ -12,10 +12,11 @@ interface UserSessionJWT {
 
 interface UserJWTtoModel {
   firstName: string;
-  access: string;
   name: string;
+  numEtu: string
   email: string;
-  username: string;
+  promo: string;
+  group: string;
 }
 
 interface storeUsers {
