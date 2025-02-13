@@ -9,7 +9,7 @@ import { KeyboardType } from "@/app/models/inputUI.model";
 import { UserRound, Lock } from "lucide-react-native";
 import { useState } from "react";
 import NavigateButton from "@/app/components/ui/navigationButton";
-import { handleCheckInputNull } from "./sign-up/service/checkString";
+import { handleCheckInputNull } from "./tools/checkInput";
 import { useAuthStore } from "./store/auth.store";
 
 export default function HomeScreen() {
