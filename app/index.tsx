@@ -33,9 +33,14 @@ export default function HomeScreen() {
         } else {
           setError(false);
           setErrorMessage(null);
+          router.push("/home");
         }
       });
     }
+  };
+
+  const handleChangeEmail = (text: string) => {
+    setEmail(text.toLowerCase());
   };
 
   return (
@@ -50,7 +55,7 @@ export default function HomeScreen() {
           style={[
             styles.title,
             { color: Colors["primary-blue"] },
-            styleAuth.titleAuth,
+            styleAuth.textCenter,
           ]}
         >
           Connectez-
@@ -58,14 +63,18 @@ export default function HomeScreen() {
             vous
           </Text>
         </Text>
-        {error && <Text style={[styles.errorMessage]}>{errorMessage}</Text>}
       </View>
 
       <View style={{ marginVertical: 40 }}>
+        {error && (
+          <Text style={[styles.errorMessage, styleAuth.textCenter]}>
+            {errorMessage}
+          </Text>
+        )}
         <InputUI
           placeholder="Entrez votre email"
           value={email}
-          onChangeText={setEmail}
+          onChangeText={handleChangeEmail}
           Icon={UserRound}
           keyboardType={KeyboardType.EmailAddress}
           onValidate={checkNull}

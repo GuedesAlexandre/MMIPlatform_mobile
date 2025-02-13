@@ -46,21 +46,16 @@ export const useAuthStore = create<storeUsers>((set) => ({
             "Access-Control-Allow-Methods": "*",
           },
         }
-      )
+      );
       const token = response.data;
       const dataUser = JWT.decode(
         token,
-        process.env.EXPO_PUBLIC_API_KEY as string,
+        process.env.EXPO_PUBLIC_API_KEY as string
       ) as UserSessionJWT;
       set({ user: dataUser });
       return dataUser;
     } catch (err: unknown) {
       const error = err as AxiosError;
-      console.error(
-        "Erreur lors de la récupération du token d'authentification :",
-        error
-      );
-
       if (error.response) {
         if (error.response.status === 400) {
           return {
