@@ -43,5 +43,10 @@ export const styles = StyleSheet.create({
     fontSize: 17,
     color: Colors["primary-blue"],
     marginTop: 20,
-  }
+  },
+  errorMessage: {
+    color: Colors["danger"],
+    marginTop: 5,
+    fontSize: 15,
+  },
 });
