@@ -9,7 +9,7 @@ import { KeyboardType } from "@/app/models/inputUI.model";
 import { UserRound, Lock } from "lucide-react-native";
 import { useState } from "react";
 import NavigateButton from "@/app/components/ui/navigationButton";
-import { checkNull } from "./sign-up/service/checkString";
+import { handleCheckInputNull } from "./sign-up/service/checkString";
 import { useAuthStore } from "./store/auth.store";
 
 export default function HomeScreen() {
@@ -25,7 +25,10 @@ export default function HomeScreen() {
   };
 
   const handlePressAuth = () => {
-    if (checkNull(password) === null && checkNull(email) === null) {
+    if (
+      handleCheckInputNull(password) === null &&
+      handleCheckInputNull(email) === null
+    ) {
       fetchAuthToken(email, password).then((response) => {
         if (response && "error" in response) {
           setError(true);
@@ -77,15 +80,15 @@ export default function HomeScreen() {
           onChangeText={handleChangeEmail}
           Icon={UserRound}
           keyboardType={KeyboardType.EmailAddress}
-          onValidate={checkNull}
+          onValidate={handleCheckInputNull}
         />
         <InputUI
-          placeholder="Mot de passe"
+          placeholder="Mot de passe *"
           Icon={Lock}
           value={password}
           onChangeText={setPassword}
           isPassword={true}
-          onValidate={checkNull}
+          onValidate={handleCheckInputNull}
         />
       </View>
       <View>
