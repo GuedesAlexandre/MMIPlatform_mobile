@@ -30,13 +30,13 @@ export default function RootLayout() {
             [
                 {
                     text: "Annuler",
-                    onPress: () => console.log("Annuler pressé"),
                     style: "cancel",
                 },
                 {
                     text: "Se déconnecter",
                     onPress: () => {
                         removeUserSession();
+                        router.push("/");
                     },
                     style: "destructive",
                 },

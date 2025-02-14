@@ -83,7 +83,7 @@ export default function HomeScreen() {
           onValidate={handleCheckInputNull}
         />
         <InputUI
-          placeholder="Mot de passe *"
+          placeholder="Mot de passe"
           Icon={Lock}
           value={password}
           onChangeText={setPassword}

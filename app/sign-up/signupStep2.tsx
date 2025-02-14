@@ -118,7 +118,7 @@ const SignUpScreen2 = () => {
       </View>
       <View>
         <InputUI
-          placeholder="Entrer votre adress mail"
+          placeholder="Entrer votre adresse mail"
           Icon={Mail}
           value={mail}
           onChangeText={handleChangeMail}

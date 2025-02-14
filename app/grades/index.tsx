@@ -10,7 +10,7 @@ const GradesScreen = () => {
         <View>
             <Text>Grades Screen de {`${user?.user.firstName} ${user?.user.name}`} !</Text>
             <Pressable>
-                <Button onPress={() => router.push("/home")}>GO to grades</Button>
+                <Button onPress={() => router.push("/home")}>Temp button Home</Button>
             </Pressable>
         </View>
     );

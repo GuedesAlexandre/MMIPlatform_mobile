@@ -10,7 +10,7 @@ const HomeScreen = () => {
         <View>
             <Text>Home Screen de {`${user?.user.firstName} ${user?.user.name}`} !</Text>
             <Pressable>
-                <Button onPress={() => router.push("/grades")}>GO to grades</Button>
+                <Button onPress={() => router.push("/grades")}>Temp button grades</Button>
             </Pressable>
         </View>
     );

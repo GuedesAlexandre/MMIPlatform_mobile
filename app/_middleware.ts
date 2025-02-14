@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { useAuthStore } from "@/app/store/auth.store";
-import { useRouter, useRootNavigationState } from "expo-router";
+import {useEffect} from "react";
+import {useAuthStore} from "@/app/store/auth.store";
+import {useRouter, useRootNavigationState, useSegments} from "expo-router";
 
 export const useAuthMiddleware = () => {
     const router = useRouter();
-    const { user } = useAuthStore();
+    const {user} = useAuthStore();
     const navigationState = useRootNavigationState();
+    const protectedPath = ["home", "grades"];
+    const segments = useSegments();
 
     useEffect(() => {
         if (!navigationState?.key) return;
-
-        if (user?.user) {
-            router.replace("/home");
-        } else {
-            router.replace("/");
+        const currentRoute = segments[0];
+        if (!user && protectedPath.includes(currentRoute)) {
+            router.push("/")
         }
-    }, [user]);
+    }, [user, segments]);
 };
