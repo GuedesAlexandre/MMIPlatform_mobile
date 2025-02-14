@@ -16,7 +16,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
     useAuthMiddleware()
-    const [loaded] = useFonts({
+    const [loadedFont] = useFonts({
         SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     });
 
@@ -53,12 +53,12 @@ export default function RootLayout() {
         if (user){
             router.push("/home");
         }
-        if (loaded) {
+        if (loadedFont) {
             SplashScreen.hideAsync();
         }
-    }, [loaded]);
+    }, [loadedFont]);
 
-    if (!loaded) {
+    if (!loadedFont) {
         return null;
     }
 
