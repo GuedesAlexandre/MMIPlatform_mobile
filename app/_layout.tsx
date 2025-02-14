@@ -21,7 +21,11 @@ export default function RootLayout() {
     });
 
     const router = useRouter();
-    const {user, removeUserSession} = useAuthStore();
+    const {user, removeUserSession, loadUserSession} = useAuthStore();
+
+    useEffect(() => {
+        loadUserSession();
+    }, []);
 
     const showAlert = () => {
         Alert.alert(
@@ -46,6 +50,9 @@ export default function RootLayout() {
     };
 
     useEffect(() => {
+        if (user){
+            router.push("/home");
+        }
         if (loaded) {
             SplashScreen.hideAsync();
         }
