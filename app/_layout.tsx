@@ -11,6 +11,8 @@ import LogoMini from "../assets/images/logo_mini.svg"
 import {useAuthStore} from "@/app/store/auth.store";
 import {LogOut} from "lucide-react-native";
 import {useAuthMiddleware} from "@/app/_middleware";
+import {stylesLayout} from "@/app/styles/_styles";
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -65,15 +67,15 @@ export default function RootLayout() {
     return (
         <>
             <View
-                style={[styles.background, {backgroundColor: Colors["primary-blue"]}]}
+                style={[stylesLayout.background, {backgroundColor: Colors["primary-blue"]}]}
             >
                 {
                     user === undefined ?
-                        <View style={styles.logo}>
+                        <View style={stylesLayout.logo}>
                             <Logo width={"75%"} style={[{alignSelf: "center"}]}/>
                         </View>
                         :
-                        <View style={styles.logoMiniContainer}>
+                        <View style={stylesLayout.logoMiniContainer}>
                             <Pressable onPress={() => router.push("/home")}>
                                 <LogoMini width={50} height={50}/>
                             </Pressable>
@@ -85,7 +87,7 @@ export default function RootLayout() {
                     style={[
                         user === undefined ? {height: "77.5%"} : {height: "82.5%"},
                         {backgroundColor: Colors["background-color"]},
-                        styles.card
+                        stylesLayout.card
                     ]}
                 >
                     <Slot/>
@@ -95,31 +97,3 @@ export default function RootLayout() {
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        width: "100%",
-        height: "100%",
-        justifyContent: "flex-end",
-    },
-    card: {
-        width: "100%",
-        borderTopEndRadius: 50,
-        borderTopStartRadius: 50,
-        padding: 20,
-    },
-    logo: {
-        flex: 1,
-        justifyContent: "center",
-    },
-    logoMiniContainer: {
-        position: "relative",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "flex-end",
-        width: "90%",
-        alignSelf: "center",
-        marginBottom: 25,
-    },
-});
