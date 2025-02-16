@@ -34,3 +34,15 @@ export const stylesLayout = StyleSheet.create({
         marginBottom: 25,
     },
 })
+
+export const semesterChoiceStyles = StyleSheet.create({
+    container: {
+        marginTop: 10,
+        justifyContent: "space-between",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    text: {
+        fontSize: 20,
+    }
+})

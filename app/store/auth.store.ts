@@ -58,6 +58,7 @@ export const useAuthStore = create<storeUsers>((set) => ({
                 process.env.EXPO_PUBLIC_API_KEY as string
             ) as UserSessionJWT;
             set({user: dataUser});
+            await AsyncStorage.setItem("bearer", token);
             await AsyncStorage.setItem("user", JSON.stringify(dataUser));
             return dataUser;
         } catch (err: unknown) {
@@ -74,6 +75,7 @@ export const useAuthStore = create<storeUsers>((set) => ({
     },
     removeUserSession: async () => {
         set({user: undefined});
+        await AsyncStorage.removeItem("bearer");
         await AsyncStorage.removeItem("user");
     },
     checkSessionExpiration: async () => {
@@ -81,6 +83,7 @@ export const useAuthStore = create<storeUsers>((set) => ({
             if (state.user?.exp) {
                 const isExpired = Date.now() > state.user.exp * 1000;
                 if (isExpired) {
+                    AsyncStorage.removeItem("bearer");
                     AsyncStorage.removeItem("user");
                     return {user: undefined};
                 }
