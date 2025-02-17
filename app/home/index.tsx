@@ -8,7 +8,7 @@ import {useEffect} from "react";
 const HomeScreen = () => {
     const router = useRouter();
     const {user} = useAuthStore()
-    const {userInformation, getUserInformation} = useUserInformation();
+    const {getUserInformation} = useUserInformation();
 
     useEffect(() => {
         getUserInformation(user?.user.numEtu)
