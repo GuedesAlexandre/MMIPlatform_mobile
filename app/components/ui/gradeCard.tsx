@@ -1,22 +1,27 @@
 import {Pressable, Text, View} from "react-native";
 import {gradeCardStyles} from "@/app/styles/_styles";
+import {useRef} from "react";
+import {ActionSheetRef} from "react-native-actions-sheet";
+import Drawer from "@/app/components/ui/drawer";
+import {Note} from "@/app/models/userInformation.model";
 
 const GradeCard = (
     {
         grade,
-        module,
-        controlName,
-        onPress,
     }: {
-        grade: number
-        module?: string
-        controlName: string
-        onPress?: () => void
+        grade: Note
     }
 ) => {
+
+    const drawerRef = useRef<ActionSheetRef>(null);
+
+    const openDrawer = () => {
+        drawerRef.current?.show();
+    };
+
     return (
         <Pressable
-            onPress={onPress}
+            onPress={openDrawer}
             style={({pressed})=>[
                 {
                     backgroundColor: pressed ? "#ebebeb" : "transparent",
@@ -32,7 +37,7 @@ const GradeCard = (
                         numberOfLines={1}
                         ellipsizeMode="tail"
                     >
-                        {module}
+                        {grade.module.name}
                     </Text>
                 }
                 <Text
@@ -40,12 +45,13 @@ const GradeCard = (
                     numberOfLines={1}
                     ellipsizeMode="tail"
                 >
-                    {controlName}
+                    {grade.name}
                 </Text>
             </View>
             <View style={{width: "23%"}}>
-                <Text style={gradeCardStyles.gradeContainer}>{grade.toFixed(2)}</Text>
+                <Text style={gradeCardStyles.gradeContainer}>{grade.note.toFixed(2)}</Text>
             </View>
+            <Drawer ref={drawerRef} grade={grade}/>
         </Pressable>
     )
 }

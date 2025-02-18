@@ -5,6 +5,7 @@ import {useUserInformation} from "@/app/store/userInformation.store";
 import {Text, View} from "react-native";
 import {viewGradesStyle} from "@/app/grades/style/_styles";
 import {DropdownRef} from "react-native-magnus";
+import {SheetManager} from "react-native-actions-sheet";
 
 const ViewRecentGrades = (
     {
@@ -16,7 +17,6 @@ const ViewRecentGrades = (
     const {userInformation} = useUserInformation()
     const [gradesBySemester, setGradesBySemester] = useState<Note[] | undefined>([]);
     const maxVisibleCards = 15;
-    const dropdownRef = useRef<DropdownRef | null>(null);
 
     useEffect(() => {
         const gradesBySemester = userInformation?.notes.filter((note) =>
@@ -36,12 +36,6 @@ const ViewRecentGrades = (
         setGradesBySemester(uniqueGrades.slice(0, maxVisibleCards));
     }, [userInformation, semesterSelected]);
 
-    const handleViewDropDown = () => {
-        if (dropdownRef.current) {
-            dropdownRef.current.open();
-        }
-    };
-
     if (gradesBySemester?.length === 0) {
         return (
             <View style={viewGradesStyle.textAnyControlContainer}>
@@ -58,10 +52,7 @@ const ViewRecentGrades = (
             return (
                 <GradeCard
                     key={key}
-                    grade={grade.note}
-                    module={grade.module.name}
-                    controlName={grade.name}
-                    onPress={handleViewDropDown}
+                    grade={grade}
                 />
             )
         })
