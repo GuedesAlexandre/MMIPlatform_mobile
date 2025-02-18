@@ -55,6 +55,7 @@ export const gradeCardStyles = StyleSheet.create({
         borderBottomColor: Colors["placeholder-color"],
         borderBottomWidth: 1,
         paddingVertical: 7,
+        paddingHorizontal: 7
     },
     gradeContainer: {
         paddingVertical: 10,

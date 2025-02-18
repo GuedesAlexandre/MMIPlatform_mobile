@@ -1,4 +1,4 @@
-import {Text, View} from "react-native";
+import {Pressable, Text, View} from "react-native";
 import {gradeCardStyles} from "@/app/styles/_styles";
 
 const GradeCard = (
@@ -6,16 +6,24 @@ const GradeCard = (
         grade,
         module,
         controlName,
-        coeff
+        onPress,
     }: {
         grade: number
         module?: string
         controlName: string
-        coeff: number
+        onPress?: () => void
     }
 ) => {
     return (
-        <View style={gradeCardStyles.container}>
+        <Pressable
+            onPress={onPress}
+            style={({pressed})=>[
+                {
+                    backgroundColor: pressed ? "#ebebeb" : "transparent",
+                },
+                gradeCardStyles.container
+            ]}
+        >
             <View style={gradeCardStyles.namesGrade}>
                 {
                     module &&
@@ -35,10 +43,10 @@ const GradeCard = (
                     {controlName}
                 </Text>
             </View>
-            <View style={{width: "22%"}}>
+            <View style={{width: "23%"}}>
                 <Text style={gradeCardStyles.gradeContainer}>{grade.toFixed(2)}</Text>
             </View>
-        </View>
+        </Pressable>
     )
 }
 

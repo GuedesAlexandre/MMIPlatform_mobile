@@ -22,3 +22,14 @@ export const viewGradesModeStyle = StyleSheet.create({
         borderBottomWidth: 3,
     }
 })
+
+export const viewGradesStyle = StyleSheet.create({
+    textAnyControl: {
+        fontSize: 18,
+        textAlign: "center",
+        color: Colors["placeholder-color"],
+    },
+    textAnyControlContainer: {
+        marginTop: 25,
+    }
+})
