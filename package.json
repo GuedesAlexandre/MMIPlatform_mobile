@@ -3,12 +3,19 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
+    "prestart": "./update_env.sh",
     "start": "expo start",
+    "prereset-project": "./update_env.sh",
     "reset-project": "node ./scripts/reset-project.js",
+    "preandroid": "./update_env.sh",
     "android": "expo start --android",
+    "preios": "./update_env.sh",
     "ios": "expo start --ios",
+    "preweb": "./update_env.sh",
     "web": "expo start --web",
+    "pretest": "./update_env.sh",
     "test": "jest --watchAll",
+    "prelint": "./update_env.sh",
     "lint": "expo lint"
   },
   "jest": {
