@@ -42,9 +42,8 @@ export default function HomeScreen() {
           router.push("/home");
         }
       });
-    } else {
-      setIsLoad(false);
     }
+    setIsLoad(false);
   };
 
   const handleChangeEmail = (text: string) => {

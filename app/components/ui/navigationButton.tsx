@@ -2,6 +2,7 @@ import { Button } from "react-native-magnus";
 import { styles } from "@/app/sign-up/styles/_styles";
 import { ButtonUI } from "@/app/sign-up/models/ui/navigationButton.model";
 import { ActivityIndicator } from "react-native";
+import { Colors } from "@/constants/Colors";
 
 const NavigateButton = ({
   label,
@@ -19,7 +20,11 @@ const NavigateButton = ({
       fontSize={15}
       rounded={10}
     >
-      {isLoad ? <ActivityIndicator size="small" color="#fff" /> : label}
+      {isLoad ? (
+        <ActivityIndicator size="small" color={Colors["background-color"]} />
+      ) : (
+        label
+      )}
     </Button>
   );
 };

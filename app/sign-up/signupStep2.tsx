@@ -82,9 +82,8 @@ const SignUpScreen2 = () => {
         resetAllInputs();
         router.push("/sign-up/error");
       }
-    } else {
-      setIsLoad(false);
     }
+    setIsLoad(false);
   };
 
   return (
