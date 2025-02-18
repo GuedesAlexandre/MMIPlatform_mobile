@@ -19,17 +19,20 @@ export default function HomeScreen() {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
+  const [isLoad, setIsLoad] = useState(false);
 
   const handlePress = () => {
     router.push("/sign-up");
   };
 
   const handlePressAuth = () => {
+    setIsLoad(true);
     if (
       handleCheckInputNull(password) === null &&
       handleCheckInputNull(email) === null
     ) {
       fetchAuthToken(email, password).then((response) => {
+        setIsLoad(false);
         if (response && "error" in response) {
           setError(true);
           setErrorMessage(response.error);
@@ -39,11 +42,13 @@ export default function HomeScreen() {
           router.push("/home");
         }
       });
+    } else {
+      setIsLoad(false);
     }
   };
 
   const handleChangeEmail = (text: string) => {
-    setEmail(text.toLowerCase());
+    setEmail(text);
   };
 
   return (
@@ -97,6 +102,7 @@ export default function HomeScreen() {
           label="Connexion"
           bgColor={Colors["primary-blue"]}
           onPressFunction={handlePressAuth}
+          isLoading={isLoad}
         />
       </View>
       <View>

@@ -3,4 +3,5 @@ export interface ButtonUI {
   bgColor: string;
   onPressFunction: () => void;
   marginTop: number;
+  isLoading?: boolean;
 }
