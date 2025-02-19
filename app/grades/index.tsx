@@ -34,7 +34,7 @@ const GradesScreen = () => {
                 {
                     selectedMode === "recent"
                         ? <ViewRecentGrades semesterSelected={String(semesterSelected)}/>
-                        : <ViewGradesByModule />
+                        : <ViewGradesByModule semesterSelected={String(semesterSelected)}/>
                 }
             </ScrollView>
 

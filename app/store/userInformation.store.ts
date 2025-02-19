@@ -21,7 +21,6 @@ export const useUserInformation = create<UserInformationStore>((set) => ({
             set({userInformation: data})
         } catch (error) {
             console.error(error)
-            console.error("Erreur lors de la récupération des informations de l'utilisateur.");
         }
     },
 }))

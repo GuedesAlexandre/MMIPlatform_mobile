@@ -1,9 +1,8 @@
 import React, {forwardRef} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
 import {Colors} from "@/constants/Colors";
 import {Note} from "@/app/models/userInformation.model";
-import {X} from 'lucide-react-native'
 import {Button} from "react-native-magnus";
 
 interface DrawerProps {

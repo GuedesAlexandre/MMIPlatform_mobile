@@ -4,8 +4,6 @@ import {Note} from "@/app/models/userInformation.model";
 import {useUserInformation} from "@/app/store/userInformation.store";
 import {Text, View} from "react-native";
 import {viewGradesStyle} from "@/app/grades/style/_styles";
-import {DropdownRef} from "react-native-magnus";
-import {SheetManager} from "react-native-actions-sheet";
 
 const ViewRecentGrades = (
     {
