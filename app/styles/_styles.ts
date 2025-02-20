@@ -52,7 +52,7 @@ export const gradeCardStyles = StyleSheet.create({
         flexDirection: "row",
         width: "100%",
         justifyContent: "space-between",
-        borderBottomColor: Colors["placeholder-color"],
+        borderBottomColor: "#e3e3e3",
         borderBottomWidth: 1,
         paddingVertical: 7,
         paddingHorizontal: 7
@@ -75,7 +75,6 @@ export const gradeCardStyles = StyleSheet.create({
         textOverflow: "ellipsis",
     },
     controlName: {
-        fontSize: 12,
         color: "#565656",
     },
     namesGrade: {

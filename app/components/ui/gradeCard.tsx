@@ -8,7 +8,9 @@ import {Note} from "@/app/models/userInformation.model";
 const GradeCard = (
     {
         grade,
+        viewOnlyControlName = false
     }: {
+        viewOnlyControlName?: boolean
         grade: Note
     }
 ) => {
@@ -22,7 +24,7 @@ const GradeCard = (
     return (
         <Pressable
             onPress={openDrawer}
-            style={({pressed})=>[
+            style={({pressed}) => [
                 {
                     backgroundColor: pressed ? "#ebebeb" : "transparent",
                 },
@@ -31,6 +33,7 @@ const GradeCard = (
         >
             <View style={gradeCardStyles.namesGrade}>
                 {
+                    !viewOnlyControlName &&
                     module &&
                     <Text
                         style={gradeCardStyles.module}
@@ -41,7 +44,7 @@ const GradeCard = (
                     </Text>
                 }
                 <Text
-                    style={gradeCardStyles.controlName}
+                    style={[gradeCardStyles.controlName, viewOnlyControlName ? {fontSize: 16} : {fontSize: 12}]}
                     numberOfLines={1}
                     ellipsizeMode="tail"
                 >

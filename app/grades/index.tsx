@@ -6,6 +6,7 @@ import {useState} from "react";
 import ViewGradesMode from "@/app/grades/components/viewGradesMode";
 import ViewRecentGrades from "@/app/grades/components/viewRecentGrades";
 import ViewGradesByModule from "@/app/grades/components/viewGradesByModule";
+import TotalAverage from "@/app/grades/components/totalAverage";
 
 const GradesScreen = () => {
     const {user} = useAuthStore();
@@ -37,7 +38,10 @@ const GradesScreen = () => {
                         : <ViewGradesByModule semesterSelected={String(semesterSelected)}/>
                 }
             </ScrollView>
-
+            {
+                selectedMode === "module" &&
+                <TotalAverage semesterSelected={String(semesterSelected)}/>
+            }
         </View>
     );
 }

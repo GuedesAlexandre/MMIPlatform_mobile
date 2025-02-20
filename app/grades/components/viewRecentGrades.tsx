@@ -1,5 +1,5 @@
 import GradeCard from "@/app/components/ui/gradeCard";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {Note} from "@/app/models/userInformation.model";
 import {useUserInformation} from "@/app/store/userInformation.store";
 import {Text, View} from "react-native";
@@ -27,9 +27,7 @@ const ViewRecentGrades = (
                     existsGrade.module.name === grade.module.name &&
                     existsGrade.module.ueName !== grade.module.ueName
             )
-            if (!exists) {
-                uniqueGrades.push(grade);
-            }
+            if (!exists) uniqueGrades.push(grade);
         })
         setGradesBySemester(uniqueGrades.slice(0, maxVisibleCards));
     }, [userInformation, semesterSelected]);
