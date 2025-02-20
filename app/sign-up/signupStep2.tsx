@@ -15,6 +15,7 @@ import {
 } from "@/app/sign-up/service/checkString";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { KeyboardType } from "@/app/models/inputUI.model";
+import { useState } from "react";
 
 const SignUpScreen2 = () => {
   const {
@@ -39,16 +40,19 @@ const SignUpScreen2 = () => {
     router.push("/sign-up");
   };
 
+  const [isLoad, setIsLoad] = useState(false);
+
   const handlePressReset = () => {
     resetAllInputs();
     router.push("/");
   };
 
   const handleChangeMail = (text: string) => {
-    setMail(text.toLowerCase());
+    setMail(text);
   };
 
   const handleConfirm = async () => {
+    setIsLoad(true);
     const areFieldsValid = [mail, password].every(
       (field) => field.trim() !== ""
     );
@@ -71,12 +75,15 @@ const SignUpScreen2 = () => {
           password.trimEnd()
         );
         resetAllInputs();
+        setIsLoad(false);
         router.push("/sign-up/success");
       } catch (err) {
+        setIsLoad(false);
         resetAllInputs();
         router.push("/sign-up/error");
       }
     }
+    setIsLoad(false);
   };
 
   return (
@@ -149,6 +156,7 @@ const SignUpScreen2 = () => {
           label="Confirmer"
           bgColor={Colors["primary-blue"]}
           onPressFunction={handleConfirm}
+          isLoading={isLoad}
         />
       </View>
       <View>
