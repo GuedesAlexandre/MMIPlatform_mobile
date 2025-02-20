@@ -1,5 +1,5 @@
-import {create} from "zustand";
-import {SignUpStore} from "@/app/models/signUp.model";
+import { create } from "zustand";
+import { SignUpStore } from "@/app/models/signUp.model";
 import axios from "axios";
 import {PermissionsEnum} from "@/app/models/enums/permissionsEnum";
 
