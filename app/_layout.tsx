@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import {StatusBar} from "expo-status-bar";
 import {useEffect} from "react";
 import "react-native-reanimated";
-import {View, StyleSheet, Alert, Pressable} from "react-native";
+import {View, Alert, Pressable} from "react-native";
 import {Colors} from "@/constants/Colors";
 import Logo from "../assets/images/logo.svg";
 import LogoMini from "../assets/images/logo_mini.svg"

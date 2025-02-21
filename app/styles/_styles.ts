@@ -1,5 +1,5 @@
-import {Colors} from "@/constants/Colors";
 import {StyleSheet} from "react-native";
+import {Colors} from "@/constants/Colors";
 
 export const styleAuth = StyleSheet.create({
     textCenter: {
@@ -33,4 +33,52 @@ export const stylesLayout = StyleSheet.create({
         alignSelf: "center",
         marginBottom: 25,
     },
+})
+
+export const semesterChoiceStyles = StyleSheet.create({
+    container: {
+        marginTop: 10,
+        justifyContent: "space-between",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    text: {
+        fontSize: 20,
+    }
+})
+
+export const gradeCardStyles = StyleSheet.create({
+    container: {
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "space-between",
+        borderBottomColor: "#e3e3e3",
+        borderBottomWidth: 1,
+        paddingVertical: 7,
+        paddingHorizontal: 7
+    },
+    gradeContainer: {
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 7,
+        backgroundColor: Colors["highlight-yellow"],
+        color: Colors["background-color"],
+        fontSize: 18,
+        flex: 1,
+        textAlign: "center",
+    },
+    coeffContainer: {
+        textAlign: "center",
+    },
+    module: {
+        fontSize: 17,
+        textOverflow: "ellipsis",
+    },
+    controlName: {
+        color: "#565656",
+    },
+    namesGrade: {
+        justifyContent: "center",
+        maxWidth: "75%",
+    }
 })
