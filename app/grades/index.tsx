@@ -2,7 +2,7 @@ import {useAuthStore} from "@/app/store/auth.store";
 import {ScrollView, View} from "react-native";
 import BackArrow from "@/app/components/ui/backArrow";
 import SemesterChoice from "@/app/components/semesterChoice";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import ViewGradesMode from "@/app/grades/components/viewGradesMode";
 import ViewRecentGrades from "@/app/grades/components/viewRecentGrades";
 import ViewGradesByModule from "@/app/grades/components/viewGradesByModule";
@@ -12,8 +12,10 @@ const GradesScreen = () => {
     const {user} = useAuthStore();
 
     const promo = user?.user.promo ?? "";
-    const year = parseInt(promo.slice(-1));
-    const semesters = year ? [year * 2 - 1, year * 2] : [1, 2];
+    const semesters = useMemo(() => {
+        const year = parseInt(promo.slice(-1));
+        return year ? [year * 2 - 1, year * 2] : [1, 2];
+    }, [promo]);
     const [semesterSelected, setSemesterSelected] = useState<number>(semesters[0])
     const [selectedMode, setSelectedMode] = useState<"recent" | "module">("recent");
 

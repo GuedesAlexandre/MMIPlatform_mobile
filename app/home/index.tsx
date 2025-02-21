@@ -9,7 +9,6 @@ const HomeScreen = () => {
     const router = useRouter();
     const {user} = useAuthStore()
     const {getUserInformation} = useUserInformation();
-
     useEffect(() => {
         getUserInformation(user?.user.numEtu)
     }, [user]);

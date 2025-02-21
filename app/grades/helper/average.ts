@@ -16,13 +16,17 @@ export const average = (grades: Note[]) => {
         : 0;
 }
 
+interface UEAveragesType {
+    [key: string]: {total: number; coeff: number};
+}
+
 export const globalAverage = (
-    modules: Module[] | undefined,
-    student: UserInformation | undefined,
+    modules?: Module[],
+    student?: UserInformation,
 ) => {
     if (!modules || modules.length === 0) return 0;
 
-    const ueAverages: Record<string, { total: number; coeff: number }> = {};
+    const ueAverages: UEAveragesType = {};
 
     modules.forEach((module) => {
         if (!ueAverages[module.ueName]) {

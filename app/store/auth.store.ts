@@ -1,7 +1,7 @@
 import axios, {AxiosError} from "axios";
 import {create} from "zustand";
 import JWT from "expo-jwt";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SecureStore from 'expo-secure-store';
 import {PermissionsEnum} from "@/app/models/enums/permissionsEnum";
 
 interface UserSessionJWT {
@@ -41,7 +41,7 @@ export const useAuthStore = create<storeUsers>((set) => ({
             const response = await axios.post(
                 `${process.env.EXPO_PUBLIC_API_URL}/auth/student/users/me`,
                 {
-                    email: email,
+                    email: email.toLowerCase(),
                     password: password,
                 },
                 {
@@ -58,8 +58,8 @@ export const useAuthStore = create<storeUsers>((set) => ({
                 process.env.EXPO_PUBLIC_API_KEY as string
             ) as UserSessionJWT;
             set({user: dataUser});
-            await AsyncStorage.setItem("bearer", token);
-            await AsyncStorage.setItem("user", JSON.stringify(dataUser));
+            await SecureStore.setItemAsync("bearer", token);
+            await SecureStore.setItemAsync("user", JSON.stringify(dataUser));
             return dataUser;
         } catch (err: unknown) {
             const error = err as AxiosError;
@@ -75,16 +75,16 @@ export const useAuthStore = create<storeUsers>((set) => ({
     },
     removeUserSession: async () => {
         set({user: undefined});
-        await AsyncStorage.removeItem("bearer");
-        await AsyncStorage.removeItem("user");
+        await SecureStore.deleteItemAsync("bearer");
+        await SecureStore.deleteItemAsync("user");
     },
     checkSessionExpiration: async () => {
         set((state) => {
             if (state.user?.exp) {
                 const isExpired = Date.now() > state.user.exp * 1000;
                 if (isExpired) {
-                    AsyncStorage.removeItem("bearer");
-                    AsyncStorage.removeItem("user");
+                    SecureStore.deleteItemAsync("bearer");
+                    SecureStore.deleteItemAsync("user");
                     return {user: undefined};
                 }
             }
@@ -93,7 +93,7 @@ export const useAuthStore = create<storeUsers>((set) => ({
     },
     loadUserSession: async () => {
         try {
-            const userSession = await AsyncStorage.getItem("user");
+            const userSession = await SecureStore.getItemAsync("user");
             if (userSession) {
                 set({user: JSON.parse(userSession)});
             }

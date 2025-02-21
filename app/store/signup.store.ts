@@ -39,8 +39,8 @@ export const useSignUp = create<SignUpStore>((set) => ({
                 numEtu: numEtu,
                 email: mail.toLowerCase(),
                 password: password,
-                lastName: lastName,
-                firstName: firstName,
+                lastName: lastName.toUpperCase(),
+                firstName: firstName.toUpperCase(),
                 access: PermissionsEnum.STUDENT,
             });
     },
