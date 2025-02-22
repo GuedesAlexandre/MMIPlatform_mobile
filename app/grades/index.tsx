@@ -2,14 +2,20 @@ import {useAuthStore} from "@/app/store/auth.store";
 import {ScrollView, View} from "react-native";
 import BackArrow from "@/app/components/ui/backArrow";
 import SemesterChoice from "@/app/components/semesterChoice";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import ViewGradesMode from "@/app/grades/components/viewGradesMode";
 import ViewRecentGrades from "@/app/grades/components/viewRecentGrades";
 import ViewGradesByModule from "@/app/grades/components/viewGradesByModule";
 import TotalAverage from "@/app/grades/components/totalAverage";
+import {globalAverage} from "@/app/grades/helper/average";
+import {useUserInformation} from "@/app/store/userInformation.store";
+import {useModuleStore} from "@/app/store/module.store";
+import {Module} from "@/app/models/userInformation.model";
 
 const GradesScreen = () => {
     const {user} = useAuthStore();
+    const {userInformation} = useUserInformation();
+    const {allModules, fetchModules} = useModuleStore();
 
     const promo = user?.user.promo ?? "";
     const semesters = useMemo(() => {
@@ -18,6 +24,13 @@ const GradesScreen = () => {
     }, [promo]);
     const [semesterSelected, setSemesterSelected] = useState<number>(semesters[0])
     const [selectedMode, setSelectedMode] = useState<"recent" | "module">("recent");
+    const [modulesBySemester, setModulesBySemester] = useState<Module[] | undefined>(undefined);
+
+    useEffect(() => {
+        fetchModules();
+        setModulesBySemester(allModules?.filter((module) => module.semester === String(semesterSelected)));
+    }, []);
+    const globalStudentAverage = globalAverage(modulesBySemester, userInformation)
 
     const handlePressArrow = (action: "prev" | "next") => {
         setSemesterSelected((prev) =>
@@ -42,7 +55,7 @@ const GradesScreen = () => {
             </ScrollView>
             {
                 selectedMode === "module" &&
-                <TotalAverage semesterSelected={String(semesterSelected)}/>
+                <TotalAverage globalAverage={globalStudentAverage}/>
             }
         </View>
     );
