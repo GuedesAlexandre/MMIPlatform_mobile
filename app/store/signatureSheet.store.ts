@@ -1,16 +1,16 @@
 import {create} from 'zustand';
 import axios from "axios";
-import {UserInformationStore} from "@/app/models/userInformation.model";
+import {SignatureSheetStore} from "@/app/models/signatureSheet.model";
 import * as SecureStore from "expo-secure-store";
 
-export const useUserInformation = create<UserInformationStore>((set) => ({
-    userInformation: undefined,
-    getUserInformation: async (numEtu) => {
+const useSignatureSheets = create<SignatureSheetStore>((set) => ({
+    signatureSheets: undefined,
+    fetchSignatureSheets: async (promo, numEtu) => {
         const bearer = await SecureStore.getItemAsync("bearer");
         if (!bearer) return;
         try {
             const response = await axios.get(
-                `${process.env.EXPO_PUBLIC_API_URL}/student/search/${numEtu}`,
+                `${process.env.EXPO_PUBLIC_API_URL}/sheets/${promo}/${numEtu}`,
                 {
                     headers: {
                         Authorization: `Bearer ${bearer.toString()}`,
@@ -18,9 +18,11 @@ export const useUserInformation = create<UserInformationStore>((set) => ({
                 }
             )
             const data = response.data;
-            set({userInformation: data})
+            set({signatureSheets: data});
         } catch (error) {
-            console.error(`Erreur lors de la récupération des informations de l'utilisateur : ${error}`)
+            console.error(`Erreur lors de la récupération des feuilles d'émargement : ${error}`);
         }
-    },
+    }
 }))
+
+export default useSignatureSheets;

@@ -2,8 +2,9 @@ import {Pressable, Text, View} from "react-native";
 import {gradeCardStyles} from "@/app/styles/_styles";
 import {useRef} from "react";
 import {ActionSheetRef} from "react-native-actions-sheet";
-import Drawer from "@/app/components/ui/drawer";
+import GradeDrawer from "@/app/components/ui/gradeDrawer";
 import {Note} from "@/app/models/userInformation.model";
+import {Colors} from "@/constants/Colors";
 
 const GradeCard = (
     {
@@ -26,7 +27,7 @@ const GradeCard = (
             onPress={openDrawer}
             style={({pressed}) => [
                 {
-                    backgroundColor: pressed ? "#ebebeb" : "transparent",
+                    backgroundColor: pressed ? Colors["cardPressed"] : "transparent",
                 },
                 gradeCardStyles.container
             ]}
@@ -54,7 +55,7 @@ const GradeCard = (
             <View style={{width: "23%"}}>
                 <Text style={gradeCardStyles.gradeContainer}>{grade.note.toFixed(2)}</Text>
             </View>
-            <Drawer ref={drawerRef} grade={grade}/>
+            <GradeDrawer ref={drawerRef} grade={grade}/>
         </Pressable>
     )
 }

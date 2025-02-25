@@ -13,4 +13,6 @@ export const Colors = {
   success: "#00936E",
   "success-hover": "#006d51",
   "highlight-yellow": "#FBBA00",
+  "cardPressed": "#EBEBEB",
+  "drawerIndicator": "#DEDEDE",
 };
