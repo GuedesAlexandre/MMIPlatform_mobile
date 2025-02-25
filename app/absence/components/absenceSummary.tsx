@@ -18,7 +18,7 @@ const AbsenceSummary = (
                 <Text style={absenceSummaryStyle.subText}>(non justifiées)</Text>
             </View>
             <View>
-                <Text style={absenceSummaryStyle.principalText}>{`${hours}h00`}</Text>
+                <Text style={absenceSummaryStyle.principalText}>{`${hours ?? "0"}h00`}</Text>
             </View>
         </View>
     )

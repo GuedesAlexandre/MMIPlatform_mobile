@@ -7,11 +7,13 @@ export const calculateTotalAbsence = (numEtu?: string, signatureSheets?: Signatu
     let totalAbsence = 0;
     signatureSheets.forEach((sheet) => {
         const duration = (new Date(sheet.finishAt).getTime() - new Date(sheet.createdAt).getTime()) / (1000 * 60 * 60)
-        for (const sign of sheet.signatures) {
-            if (sign.studentWhoSign.numEtu === numEtu && sign.sign === Presence.ABS && sign.justification === Justification.NOT_JUSTIFIED) {
-                totalAbsence += duration;
-            }
-        }
+        const isAbsent = sheet.signatures.find(sign =>
+            sign.studentWhoSign.numEtu === numEtu &&
+            sign.sign === Presence.ABS &&
+            sign.justification === Justification.NOT_JUSTIFIED
+        );
+
+        if (isAbsent) totalAbsence += duration;
     })
     return totalAbsence;
 }

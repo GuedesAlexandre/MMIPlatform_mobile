@@ -16,13 +16,15 @@ const ViewAbsences = (
             {
                 absencesSheets?.map((sheet, key) => {
                     const userSignature = sheet.signatures
-                        .filter((signature) => signature.studentWhoSign.numEtu === numEtu)[0];
-                    return (
+                        .find((signature) => signature.studentWhoSign.numEtu === numEtu);
+                    return userSignature && (
                         <AbsenceCard
                             justification={userSignature.justification}
                             createdAt={sheet.createdAt}
                             finishedAt={sheet.finishAt}
-                            moduleName={sheet.moduleName}/>
+                            moduleName={sheet.moduleName}
+                            key={key}
+                        />
                     )
                 })
             }

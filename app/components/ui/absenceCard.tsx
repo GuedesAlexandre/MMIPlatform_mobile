@@ -32,7 +32,7 @@ const AbsenceCard = (
             onPress={openDrawer}
             style={({pressed}) => [
                 {
-                    backgroundColor: pressed ? "#ebebeb" : "transparent",
+                    backgroundColor: pressed ? Colors["cardPressed"] : "transparent",
                 },
                 absenceCardStyles.container
             ]}

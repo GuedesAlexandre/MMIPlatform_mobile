@@ -4,6 +4,7 @@ import {useRef} from "react";
 import {ActionSheetRef} from "react-native-actions-sheet";
 import GradeDrawer from "@/app/components/ui/gradeDrawer";
 import {Note} from "@/app/models/userInformation.model";
+import {Colors} from "@/constants/Colors";
 
 const GradeCard = (
     {
@@ -26,7 +27,7 @@ const GradeCard = (
             onPress={openDrawer}
             style={({pressed}) => [
                 {
-                    backgroundColor: pressed ? "#ebebeb" : "transparent",
+                    backgroundColor: pressed ? Colors["cardPressed"] : "transparent",
                 },
                 gradeCardStyles.container
             ]}

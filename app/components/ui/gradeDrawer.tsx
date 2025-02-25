@@ -21,7 +21,7 @@ const GradeDrawer = forwardRef<ActionSheetRef, DrawerProps>(({grade}, ref) => {
             ref={ref}
             containerStyle={drawerStyles.container}
             gestureEnabled={true}
-            indicatorStyle={{backgroundColor: "#dedede"}}
+            indicatorStyle={{backgroundColor: Colors["drawerIndicator"]}}
         >
             <View style={drawerStyles.content}>
                 <View>
