@@ -82,3 +82,79 @@ export const gradeCardStyles = StyleSheet.create({
         maxWidth: "75%",
     }
 })
+
+export const absenceCardStyles = StyleSheet.create({
+    container: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingHorizontal: 7,
+        paddingVertical: 7,
+        borderBottomColor: "#e3e3e3",
+        borderBottomWidth: 1,
+    },
+    textContainer: {
+        flexDirection: "column",
+        width: "100%",
+        paddingLeft: 10,
+        paddingRight: 20,
+    },
+    subContainer: {
+        flexDirection: "row",
+    },
+    headText: {
+        fontSize: 18,
+    },
+    bottomText: {
+        fontSize: 14,
+        marginTop: 7
+    }
+})
+
+export const drawerStyles = StyleSheet.create({
+    container: {
+        backgroundColor: Colors["background-color"],
+        paddingHorizontal: 20,
+        paddingBottom: 40,
+        paddingTop: 20,
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
+    },
+    content: {
+        paddingVertical: 10,
+        paddingHorizontal: 5,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: Colors["text-color-black"],
+        textAlign: "center",
+    },
+    text: {
+        fontSize: 16,
+        color: Colors["text-color-black"],
+        lineHeight: 22,
+        marginBottom: 20,
+    },
+    icon: {
+        position: 'absolute',
+        right: 0,
+    },
+    containerInfo: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "100%",
+        marginHorizontal: "auto",
+        marginTop: 10,
+    },
+    resourceNameText: {
+        fontSize: 18,
+        fontWeight: 'medium',
+        marginTop: 20,
+    },
+    controleNameText: {
+        fontSize: 18,
+        marginTop: 7.5,
+    }
+})

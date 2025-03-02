@@ -2,7 +2,7 @@ import axios, {AxiosError} from "axios";
 import {create} from "zustand";
 import JWT from "expo-jwt";
 import * as SecureStore from 'expo-secure-store';
-import {PermissionsEnum} from "@/app/models/enums/permissionsEnum";
+import {PermissionsEnum} from "@/app/models/enum/permissions.enum";
 
 interface UserSessionJWT {
     user: UserJWTtoModel;
