@@ -12,6 +12,8 @@ import {useAuthStore} from "@/app/store/auth.store";
 import {LogOut} from "lucide-react-native";
 import {useAuthMiddleware} from "@/app/_middleware";
 import {stylesLayout} from "@/app/styles/_styles";
+import {useUserInformation} from "@/app/store/userInformation.store";
+import useSignatureSheets from "@/app/store/signatureSheet.store";
 
 
 SplashScreen.preventAutoHideAsync();
@@ -24,6 +26,8 @@ export default function RootLayout() {
 
     const router = useRouter();
     const {user, removeUserSession, loadUserSession} = useAuthStore();
+    const {getUserInformation} = useUserInformation();
+    const {fetchSignatureSheets} = useSignatureSheets()
 
     useEffect(() => {
         loadUserSession();
@@ -53,6 +57,8 @@ export default function RootLayout() {
 
     useEffect(() => {
         if (user){
+            getUserInformation(user?.user.numEtu)
+            fetchSignatureSheets(user?.user.promo, user?.user.numEtu)
             router.push("/home");
         }
         if (loadedFont) {

@@ -4,7 +4,7 @@ import JWT from "expo-jwt";
 import * as SecureStore from 'expo-secure-store';
 import {PermissionsEnum} from "@/app/models/enum/permissions.enum";
 
-interface UserSessionJWT {
+export interface UserSessionJWT {
     user: UserJWTtoModel;
     sub: string;
     iat: number;
@@ -12,7 +12,7 @@ interface UserSessionJWT {
     expirationTime?: number;
 }
 
-interface UserJWTtoModel {
+export interface UserJWTtoModel {
     firstName: string;
     name: string;
     numEtu: string
