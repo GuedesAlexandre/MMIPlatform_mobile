@@ -24,25 +24,17 @@ const HomeScreen = () => {
     const [gradesBySemester, setGradesBySemester] = useState<Note[] | undefined>([]);
     const [absences, setAbsences] = useState<SignatureSheet[] | undefined>([]);
 
-    const maxVisibleCards = 5;
-
     useEffect(() => {
-        if (user) {
-            getUserInformation(user.user.numEtu);
-            fetchSignatureSheets(user.user.promo, user.user.numEtu);
-        }
+        user && getUserInformation(user.user.numEtu);
+        user && fetchSignatureSheets(user.user.promo, user.user.numEtu);
     }, [user]);
 
     useEffect(() => {
-        if (userInformation) {
-            setGradesBySemester(getRecentGrades(maxVisibleCards, userInformation));
-        }
+        userInformation && setGradesBySemester(getRecentGrades(5, userInformation))
     }, [userInformation]);
 
     useEffect(() => {
-        if (signatureSheets) {
-            setAbsences(recentAbsence(maxVisibleCards, user?.user.numEtu, signatureSheets));
-        }
+        signatureSheets && setAbsences(recentAbsence(5, user?.user.numEtu, signatureSheets))
     }, [signatureSheets]);
 
     return (

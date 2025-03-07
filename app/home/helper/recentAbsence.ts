@@ -5,7 +5,7 @@ export const recentAbsence = (maxVisibleCards: number, numEtu?: string, signatur
     if (!signatureSheets || !numEtu) return [];
 
     return signatureSheets?.filter((sheet) =>
-        sheet.signatures.some((student) =>
+        sheet.signatures.find((student) =>
             student.studentWhoSign.numEtu === numEtu &&
             student.sign === Presence.ABS
         )

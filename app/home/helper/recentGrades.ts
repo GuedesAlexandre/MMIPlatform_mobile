@@ -6,7 +6,7 @@ export const getRecentGradesBySemester = (maxVisibleCards: number, semesterSelec
         note.module.semester === semesterSelected).reverse();
     const uniqueGrades: Note[] = [];
     gradesBySemester?.forEach((grade) => {
-        const exists = uniqueGrades.some(
+        const exists = uniqueGrades.find(
             (existsGrade) =>
                 existsGrade.name === grade.name &&
                 existsGrade.module.name === grade.module.name &&
@@ -21,8 +21,8 @@ export const getRecentGradesBySemester = (maxVisibleCards: number, semesterSelec
 export const getRecentGrades = (maxVisibleCards: number, userInformation?: UserInformation) => {
     if (!userInformation) return [];
     const uniqueGrades: Note[] = [];
-    userInformation?.notes.forEach((grade)=>{
-        const exists = uniqueGrades.some(
+    userInformation?.notes.forEach((grade) => {
+        const exists = uniqueGrades.find(
             (existsGrade) =>
                 existsGrade.name === grade.name &&
                 existsGrade.module.name === grade.module.name &&

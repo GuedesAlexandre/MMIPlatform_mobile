@@ -15,10 +15,9 @@ const ViewRecentGrades = (
 ) => {
     const {userInformation} = useUserInformation()
     const [gradesBySemester, setGradesBySemester] = useState<Note[] | undefined>([]);
-    const maxVisibleCards = 15;
 
     useEffect(() => {
-        setGradesBySemester(getRecentGradesBySemester(maxVisibleCards, semesterSelected, userInformation))
+        setGradesBySemester(getRecentGradesBySemester(15, semesterSelected, userInformation))
     }, [userInformation, semesterSelected]);
 
     if (gradesBySemester?.length === 0) {

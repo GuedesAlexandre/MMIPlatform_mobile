@@ -1,6 +1,7 @@
 import {Image, Text, View} from "react-native";
 import {StyleSheet} from "react-native";
 import {Colors} from "@/constants/Colors";
+import {useMemo} from "react";
 
 interface UserInfoBox {
     firstName: string,
@@ -16,9 +17,14 @@ const UserInfoBox = (
         promo,
         group
     }: UserInfoBox) => {
-    const initial = firstName.charAt(0) + lastName.charAt(0);
-    const firstNameLowerCase = firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase();
-    const lastNameLowerCase = lastName.slice(0, 1).toUpperCase() + lastName.slice(1).toLowerCase();
+
+    const {initial, firstNameLowerCase, lastNameLowerCase} = useMemo(() => {
+        const initial = firstName.charAt(0) + lastName.charAt(0);
+        const firstNameLowerCase = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+        const lastNameLowerCase = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+
+        return {initial, firstNameLowerCase, lastNameLowerCase};
+    }, [firstName, lastName]);
 
     return (
         <View style={[styles.container, styles.box]}>
@@ -66,7 +72,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         backgroundColor: "#fff",
         shadowColor: "rgba(0, 0, 0, 0.24)",
-        shadowOffset: { width: 0, height: 3 },
+        shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.20,
         shadowRadius: 7,
         elevation: 3,
