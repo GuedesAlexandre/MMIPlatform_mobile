@@ -38,9 +38,9 @@ export const useAuthStore = create<storeUsers>((set) => ({
   user: undefined,
   fetchAuthToken: async (email, password) => {
     try {
-      if (!Constants.expoConfig?.extra?.EXPO_PUBLIC_API_KEY) return;
+      if (!process.env.EXPO_PUBLIC_API_KEY) return;
       const response = await axios.post(
-        `${Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL}/auth/student/users/me`,
+        `${process.env.EXPO_PUBLIC_API_URL}/auth/student/users/me`,
         {
           email: email.toLowerCase(),
           password: password,
@@ -56,7 +56,7 @@ export const useAuthStore = create<storeUsers>((set) => ({
       const token = response.data;
       const dataUser = JWT.decode(
         token,
-        Constants.expoConfig?.extra?.EXPO_PUBLIC_API_KEY as string
+        process.env.EXPO_PUBLIC_API_KEY as string
       ) as UserSessionJWT;
       set({ user: dataUser });
       await SecureStore.setItemAsync("bearer", token);

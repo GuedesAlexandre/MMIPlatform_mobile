@@ -38,3 +38,4 @@ yarn-error.*
 
 app-example
 app.config.js
+eas.json

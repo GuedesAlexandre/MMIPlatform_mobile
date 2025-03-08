@@ -35,7 +35,7 @@ export const useSignUp = create<SignUpStore>((set) => ({
     password: string
   ) => {
     await axios.post(
-      `${Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL}/auth/student`,
+      `${process.env.EXPO_PUBLIC_API_URL}/auth/student`,
       {
         numEtu: numEtu,
         email: mail.toLowerCase(),

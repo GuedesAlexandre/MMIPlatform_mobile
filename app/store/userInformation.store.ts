@@ -11,7 +11,7 @@ export const useUserInformation = create<UserInformationStore>((set) => ({
     if (!bearer) return;
     try {
       const response = await axios.get(
-        `${Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL}/student/search/${numEtu}`,
+        `${process.env.EXPO_PUBLIC_API_URL}/student/search/${numEtu}`,
         {
           headers: {
             Authorization: `Bearer ${bearer.toString()}`,

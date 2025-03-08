@@ -11,7 +11,7 @@ export const useModuleStore = create<ModuleStore>((set) => ({
     if (!bearer) return;
     try {
       const response = await axios.get(
-        `${Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL}/module/all`,
+        `${process.env.EXPO_PUBLIC_API_URL}/module/all`,
         {
           headers: {
             Authorization: `Bearer ${bearer?.toString()}`,

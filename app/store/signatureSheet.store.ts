@@ -11,7 +11,7 @@ const useSignatureSheets = create<SignatureSheetStore>((set) => ({
     if (!bearer) return;
     try {
       const response = await axios.get(
-        `${Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL}/sheets/${promo}/${numEtu}`,
+        `${process.env.EXPO_PUBLIC_API_URL}/sheets/${promo}/${numEtu}`,
         {
           headers: {
             Authorization: `Bearer ${bearer.toString()}`,
