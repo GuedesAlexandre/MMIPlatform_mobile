@@ -29,7 +29,7 @@ const GradesScreen = () => {
     useEffect(() => {
         fetchModules();
         setModulesBySemester(allModules?.filter((module) => module.semester === String(semesterSelected)));
-    }, []);
+    }, [semesterSelected]);
     const globalStudentAverage = globalAverage(modulesBySemester, userInformation)
 
     const handlePressArrow = (action: "prev" | "next") => {

@@ -14,7 +14,7 @@ const ViewAbsences = (
     return (
         <View style={{marginTop: 15}}>
             {
-                absencesSheets?.map((sheet, key) => {
+                absencesSheets?.reverse().map((sheet, key) => {
                     const userSignature = sheet.signatures
                         .find((signature) => signature.studentWhoSign.numEtu === numEtu);
                     return userSignature && (
