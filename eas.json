@@ -12,7 +12,11 @@
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "API_URL": "https://api.example.com",
+        "SECRET_KEY": "your-secret-key"
+      }
     }
   },
   "submit": {
