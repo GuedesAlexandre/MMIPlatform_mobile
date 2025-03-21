@@ -97,17 +97,16 @@ export const useAuthStore = create<storeUsers>((set) => ({
         if (requestToken) {
             const isRequestTokenExpired = Date.now() > JSON.parse(requestToken).expiresAt;
             set((state) => {
-                if (state.user?.exp) {
-                    const isExpired = Date.now() > state.user.exp * 1000;
-                    if (isExpired) {
-                        if (isRequestTokenExpired) {
-                            SecureStore.deleteItemAsync("bearer");
-                            SecureStore.deleteItemAsync("user");
-                            return {user: undefined};
-                        }
-                        state.fetchAuthToken(JSON.parse(requestToken).requestToken.email, JSON.parse(requestToken).requestToken.password);
-                        return state;
+                const isExpired = state.user?.exp ? Date.now() > state.user.exp * 1000 : false
+                if (isExpired) {
+                    if (isRequestTokenExpired) {
+                        SecureStore.deleteItemAsync("bearer");
+                        SecureStore.deleteItemAsync("user");
+                        SecureStore.deleteItemAsync("requestToken");
+                        return {user: undefined};
                     }
+                    state.fetchAuthToken(JSON.parse(requestToken).requestToken.email, JSON.parse(requestToken).requestToken.password);
+                    return state;
                 }
                 return state;
             });
